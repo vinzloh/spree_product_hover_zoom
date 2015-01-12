@@ -8,8 +8,7 @@
   <% else %>
     <%= link_to product_image(@product, :itemprop => "image", :class => 'zoom-click'), @product.images.first.attachment.url(Spree::ProductZoom::Config.default_image_style), :class => 'zoom-image large-image zoom-click', :rel => 'gallery' %>
     <br />
-    <%= link_to image_tag('zoom.gif', :class => 'click-to-zoom'), @product.images.first.attachment.url(Spree::ProductZoom::Config.default_image_style), :class => 'zoom-image click-to-zoom', :rel => 'gallery' %>
-
+    <%= link_to image_tag('zoom.gif', :class => 'zoom-icon click-to-zoom'), @product.images.first.attachment.url(Spree::ProductZoom::Config.default_image_style), :class => 'zoom-image click-to-zoom', :rel => 'gallery' %>
     <div id="gallery" style="display:none;">
       <% @product.images.each do |img| %>
           <%= link_to image_tag(img.attachment.url(:product)), img.attachment.url(Spree::ProductZoom::Config.default_image_style), :class => 'fancybox', :rel => 'gallery' %>
