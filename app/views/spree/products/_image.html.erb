@@ -3,14 +3,19 @@
   <br />
   <%= link_to image_tag('zoom.gif'), image.attachment.url(:original), :class => 'fancybox zoom-image' %>
 <% else %>
-  <% if @product.images.empty? %>
+  <% if @product.images.empty? and @product.variants[0].images.empty? %>
     <%= product_image(@product, :itemprop => "large") %>
   <% else %>
-    <%= link_to product_image(@product, :itemprop => "image", :class => 'zoom-click'), @product.images.first.attachment.url(Spree::ProductZoom::Config.default_image_style), :class => 'zoom-image large-image zoom-click', :rel => 'gallery' %>
+    <% if @product.images.empty? %>
+      <% @p = @product.variants[0] %>
+    <% else %>
+      <% @p = @product %>
+    <% end %>
+    <%= link_to product_image(@product, :itemprop => "image", :class => 'zoom-click'), @p.images.first.attachment.url(Spree::ProductZoom::Config.default_image_style), :class => 'zoom-image large-image zoom-click', :rel => 'gallery' %>
     <br />
-    <%= link_to image_tag('zoom.gif', :class => 'zoom-icon click-to-zoom'), @product.images.first.attachment.url(Spree::ProductZoom::Config.default_image_style), :class => 'zoom-image click-to-zoom', :rel => 'gallery' %>
+    <%= link_to image_tag('zoom.gif', :class => 'zoom-icon click-to-zoom'), @p.images.first.attachment.url(Spree::ProductZoom::Config.default_image_style), :class => 'zoom-image click-to-zoom', :rel => 'gallery' %>
     <div id="gallery" style="display:none;">
-      <% @product.images.each do |img| %>
+      <% @p.images.each do |img| %>
           <%= link_to image_tag(img.attachment.url(:product)), img.attachment.url(Spree::ProductZoom::Config.default_image_style), :class => 'fancybox', :rel => 'gallery' %>
       <% end %>
       <% if @product.has_variants? %>
