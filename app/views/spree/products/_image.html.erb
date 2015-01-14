@@ -3,7 +3,7 @@
   <br />
   <%= link_to image.attachment.url(:original), :class => 'fancybox zoom-image' %>
 <% else %>
-  <% if @product.images.empty? and @product.has_variants? and @product.variants_images.empty? %>
+  <% if @product.images.empty? and @product.has_variants? and @product.variant_images.empty? %>
     <%= product_image(@product, :itemprop => "large") %>
   <% else %>
     <% if @product.images.empty? %>
