@@ -16,10 +16,6 @@
     <!-- PROBLEM: still in div#main-image, will be overwritten by javascript -->
     <%= link_to image_tag('zoom.gif', alt: 'zoom image', class: 'click-to-zoom'), @p.images.first.attachment.url(Spree::ProductZoom::Config.default_image_style), :class => 'zoom-image click-to-zoom', :rel => 'gallery' %>
     <div id="gallery" style="display:none;">
-      <% @product.images.each do |img| %>
-          <% clazz = 'master productid-' + @p.id.to_s + ' fancybox' %>
-          <%= link_to image_tag(img.attachment.url(:product)), img.attachment.url(Spree::ProductZoom::Config.default_image_style), :class => clazz, :rel => 'gallery' %>
-      <% end %>
       <% if @product.has_variants? %>
         <% first_variant_id = @product.variants.first.id %>
         <% @product.variants.each do |variant| %>
@@ -34,6 +30,10 @@
             <%= link_to image_tag(i.attachment.url(:product)), i.attachment.url(Spree::ProductZoom::Config.default_image_style), :class => clazz, :rel => 'gallery' %>
           <% end %>
         <% end %>
+      <% end %>
+      <% @product.images.each do |img| %>
+        <% clazz = 'master productid-' + @p.id.to_s + ' fancybox' %>
+        <%= link_to image_tag(img.attachment.url(:product)), img.attachment.url(Spree::ProductZoom::Config.default_image_style), :class => clazz, :rel => 'gallery' %>
       <% end %>
     </div>
   <% end %>

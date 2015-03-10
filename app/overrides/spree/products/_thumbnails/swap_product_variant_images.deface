@@ -1,0 +1,3 @@
+insert_bottom '#product-thumbnails'
+cut :start => 'erb:contains("@product.images.each do |i|")', :end => 'erb:contains("end")'
+original 'ac7f68f024a55240dd25de7c792ebbdcbdfd2121'
