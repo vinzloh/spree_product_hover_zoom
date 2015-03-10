@@ -5,10 +5,12 @@ add_image_handlers = ->
     ($ '#main-image').data 'selectedThumb', ($ event.currentTarget).attr('href')
     ($ '#main-image').data 'selectedThumbId', ($ event.currentTarget).parent().attr('id')
     ($ '#main-image').data 'index', ($ event.currentTarget).parent().index()
+    ($ 'ul.thumbnails').find('li').removeClass 'selected'
+    ($ event.currentTarget).parent('li').addClass 'selected'
 
-    ($ this).mouseout ->
-      ($ 'ul.thumbnails li').removeClass 'selected'
-      ($ event.currentTarget).parent('li').addClass 'selected'
+#    ($ this).mouseout ->
+#      ($ 'ul.thumbnails li').removeClass 'selected'
+#      ($ event.currentTarget).parent('li').addClass 'selected'
     false
 
   ($ 'ul.thumbnails li').on 'mouseenter', (event) ->
@@ -21,14 +23,20 @@ add_image_handlers = ->
 
   ($ 'img.zoom-click').on 'click', (event) ->
     index = ($ '#main-image').data 'index'
-    index = 0 if !index?
-    ($ '.fancybox')[index].click()
+#    index = 0 if !index?
+    if !index?
+      ($ '.fancybox')[0].click()
+    else
+      ($ '#gallery > a')[index].click()
     event.preventDefault()
 
   ($ 'img.click-to-zoom').on 'click', (event) ->
     index = ($ '#main-image').data 'index'
-    index = 0 if !index?
-    ($ '.fancybox')[index].click()
+    #    index = 0 if !index?
+    if !index?
+      ($ '.fancybox')[0].click()
+    else
+      ($ '#gallery > a')[index].click()
     event.preventDefault()
 
 show_variant_images = (variant_id) ->
@@ -51,6 +59,7 @@ show_variant_images = (variant_id) ->
     ($ '#main-image img.zoom-click').attr 'src', newImg
     ($ '#main-image').data 'selectedThumb', newImg
     ($ '#main-image').data 'selectedThumbId', thumb.attr('id')
+    ($ '#main-image').removeData 'index'
 
 update_variant_price = (variant) ->
   variant_price = variant.data('price')
