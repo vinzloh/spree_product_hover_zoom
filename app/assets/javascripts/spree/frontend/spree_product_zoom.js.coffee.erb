@@ -68,8 +68,12 @@ update_variant_price = (variant) ->
 $ ->
   ($ 'img.click-to-zoom').attr 'src', "<%= asset_path('zoom.gif') %>"
   add_image_handlers()
-  show_variant_images ($ '#product-variants input[type="radio"]').eq(0).attr('value') if ($ '#product-variants input[type="radio"]').length > 0
-  ($ '#product-variants input[type="radio"]').click (event) ->
+  radios = ($ '#product-variants input[type="radio"]')
+  if radios.length > 0
+    selectedRadio = ($ '#product-variants input[type="radio"][checked="checked"]')
+    show_variant_images selectedRadio.attr('value')
+    update_variant_price selectedRadio
+  radios.click (event) ->
     show_variant_images @value
     update_variant_price ($ this)
   ($ '.fancybox').fancybox()
