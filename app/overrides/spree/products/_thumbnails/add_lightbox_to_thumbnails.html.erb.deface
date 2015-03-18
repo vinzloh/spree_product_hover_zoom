@@ -1,2 +1,3 @@
 <!-- replace "erb[loud]:contains('image_tag')" -->
+<!--original '1e84d3a5d442db03ee2f370d7b2f2988e9bfb66a'-->
 <%= link_to(image_tag(i.attachment.url(:mini)), i.attachment.url(:product),:data => { :original => i.attachment.url(:original) }) %>

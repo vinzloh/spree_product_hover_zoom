@@ -1,3 +1,12 @@
+handle_zoom_click = (event) ->
+  index = ($ '#main-image').data 'index'
+  #    index = 0 if !index?
+  if !index?
+    ($ '.fancybox')[0].click()
+  else
+    ($ '#gallery > a')[index].click()
+  event.preventDefault()
+
 add_image_handlers = ->
   ($ '#main-image').data 'selectedThumb', ($ '#main-image img').attr('src')
   ($ 'ul.thumbnails li').eq(0).addClass 'selected'
@@ -22,22 +31,10 @@ add_image_handlers = ->
     ($ '#main-image img').first().attr 'src', ($ '#main-image').data('selectedThumb')
 
   ($ 'img.zoom-click').on 'click', (event) ->
-    index = ($ '#main-image').data 'index'
-#    index = 0 if !index?
-    if !index?
-      ($ '.fancybox')[0].click()
-    else
-      ($ '#gallery > a')[index].click()
-    event.preventDefault()
+    handle_zoom_click(event)
 
   ($ 'img.click-to-zoom').on 'click', (event) ->
-    index = ($ '#main-image').data 'index'
-    #    index = 0 if !index?
-    if !index?
-      ($ '.fancybox')[0].click()
-    else
-      ($ '#gallery > a')[index].click()
-    event.preventDefault()
+    handle_zoom_click(event)
 
 show_variant_images = (variant_id) ->
   # ERROR: was overwritten by showVariantImages
@@ -76,4 +73,12 @@ $ ->
   radios.click (event) ->
     show_variant_images @value
     update_variant_price ($ this)
+  select = ($ '#product-variants select')
+  if select.length > 0
+    show_variant_images select.val()
+    update_variant_price ($ this).find('option:selected')
+    select.on 'change', (event) ->
+      show_variant_images select.val()
+      update_variant_price ($ this).find('option:selected')
+
   ($ '.fancybox').fancybox()
