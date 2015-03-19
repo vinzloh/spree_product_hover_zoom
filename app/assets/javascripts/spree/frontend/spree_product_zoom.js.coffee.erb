@@ -61,6 +61,7 @@ show_variant_images = (variant_id) ->
 update_variant_price = (variant) ->
   variant_price = variant.data('price')
   ($ '.price.selling').text(variant_price) if variant_price
+  ($ '#product-sku').text(variant.data('sku')) if variant.data('sku')
   if variant.data('availability') is 'InStock'
     ($ '#add-to-cart-button').prop('disabled', false).html('<%= Spree.t(:add_to_cart) %>')
   else
