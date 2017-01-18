@@ -1,10 +1,10 @@
 module Spree::ProductZoom; end
 
-module SpreeProductZoom
+module SpreeProductHoverZoom
   class Engine < Rails::Engine
     require 'spree/core'
     isolate_namespace Spree
-    engine_name 'spree_product_zoom'
+    engine_name 'spree_product_hover_zoom'
 
     config.autoload_paths += %W(#{config.root}/lib)
 
@@ -14,10 +14,10 @@ module SpreeProductZoom
     end
 
     initializer :assets do |config|
-      Rails.application.config.assets.precompile += %w( store/fancybox_*.* store/blank.gif )
+      Rails.application.config.assets.precompile += %w( store/blank.gif )
     end
 
-    initializer("spree.product_zoom.preferences", 
+    initializer("spree.product_zoom.preferences",
                 :after => "spree.environment",
                 :before => :load_config_initializers) do |app|
       Spree::ProductZoom::Config = Spree::ProductZoomConfiguration.new
