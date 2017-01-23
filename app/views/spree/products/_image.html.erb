@@ -1,7 +1,7 @@
 <% if defined?(image) && image %>
   <%= image_tag image.attachment.url(:product), :itemprop => "image" %>
 <% else %>
-  <a data-luminous data-drift href="<%= @product.images.first.attachment.url(:product) %>" class="drift-link">
+  <a data-luminous data-drift href="<%= @product.images.first.attachment.url(:product) if @product.images.present? %>" class="drift-link">
     <%= product_image(@product, :itemprop => "image", data: { image: '' }) %>
   </a>
 <% end %>
