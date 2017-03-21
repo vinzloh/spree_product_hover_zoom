@@ -2,7 +2,7 @@
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'spree_product_hover_zoom'
-  s.version     = '1.0'
+  s.version     = '1.0.1'
   s.summary     = 'A Spree extension that adds gallery view and zoom-on-hover functionality for product images.'
   s.required_ruby_version = '>= 1.8.7'
 
