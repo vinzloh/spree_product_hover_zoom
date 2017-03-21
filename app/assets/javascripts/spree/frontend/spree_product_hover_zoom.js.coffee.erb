@@ -18,6 +18,7 @@ add_image_handlers = ->
 
 window.SpreeProductHoverZoom = {
   zoomFactor: 4,
+  handleTouch: true,
 }
 
 $ ->
@@ -25,7 +26,13 @@ $ ->
 
   el_drift = $('[data-drift]')[0]
 
-  new Drift(el_drift, paneContainer: $('[data-hook=product_hover_zoom]')[0], zoomFactor: SpreeProductHoverZoom.zoomFactor, sourceAttribute: 'href') if (el_drift && $(el_drift).attr('href').length > 0)
+  driftOptions =
+    paneContainer: $('[data-hook=product_hover_zoom]')[0]
+    zoomFactor: SpreeProductHoverZoom.zoomFactor
+    sourceAttribute: 'href'
+    handleTouch: SpreeProductHoverZoom.handleTouch
+
+  new Drift(el_drift, driftOptions) if (el_drift && $(el_drift).attr('href').length > 0)
 
   # Single zoom view for main product image
   # new Luminous($('[data-luminous]')[0]);
