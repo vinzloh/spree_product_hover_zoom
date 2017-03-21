@@ -19,6 +19,7 @@ add_image_handlers = ->
 window.SpreeProductHoverZoom = {
   zoomFactor: 4,
   handleTouch: true,
+  touchDelay: 0,
 }
 
 $ ->
@@ -31,6 +32,7 @@ $ ->
     zoomFactor: SpreeProductHoverZoom.zoomFactor
     sourceAttribute: 'href'
     handleTouch: SpreeProductHoverZoom.handleTouch
+    touchDelay: SpreeProductHoverZoom.touchDelay
 
   new Drift(el_drift, driftOptions) if (el_drift && $(el_drift).attr('href').length > 0)
 
