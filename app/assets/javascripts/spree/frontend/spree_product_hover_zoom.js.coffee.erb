@@ -12,9 +12,9 @@ add_image_handlers = ->
     ($ '#main-image img').first().attr 'src', ($ event.currentTarget).find('a').attr('href')
     ($ '[data-drift]').first().attr 'href', ($ event.currentTarget).find('a').attr('href')
 
-  # ($ 'ul.thumbnails li').on 'mouseleave', (event) ->
-  #   ($ '#main-image img').first().attr 'src', ($ '#main-image').data('selectedThumb')
-  #   ($ '[data-drift]').first().attr 'href', ($ '#main-image').data('selectedThumb')
+  ($ 'ul.thumbnails li').on 'mouseleave', (event) ->
+    ($ '#main-image img').first().attr 'src', ($ '#main-image').data('selectedThumb')
+    ($ '[data-drift]').first().attr 'href', ($ '#main-image').data('selectedThumb')
 
 window.SpreeProductHoverZoom = {
   zoomFactor: 4,
