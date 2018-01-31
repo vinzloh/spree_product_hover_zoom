@@ -23,3 +23,7 @@ the installer will append this file to the app vendored assets here: 'vendor/ass
   cursor: zoom-in;
   width: 100%;
 }
+
+#main-image{
+	min-height: 272px;
+}
