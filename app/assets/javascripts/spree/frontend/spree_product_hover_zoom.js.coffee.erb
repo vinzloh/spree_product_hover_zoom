@@ -9,6 +9,7 @@ add_image_handlers = ->
     
     ($ '#main-image img').first().attr 'src', ($ event.currentTarget).find('a').attr('href')
     ($ '[data-drift]').first().attr 'href', ($ event.currentTarget).find('a').attr('href')
+    ($ '[data-drift]').first().attr 'href', ($ event.currentTarget).find('a').data('large')
     false
 
 window.SpreeProductHoverZoom = {
